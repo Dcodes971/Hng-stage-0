@@ -1,0 +1,228 @@
+/* ====================
+RESET & BASE
+======================= */
+*,*::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #0d1117;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+/* =============
+CARD
+================ */
+.todo-card{
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    width: 100%;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ==============
+HEADER: CHECKBOX + TITLE
+================ */
+.card-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    accent-color: #1a56db;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+input[type="checkbox"]:focus-visible{
+    outline:3px solid #1a56db;
+    outline-offset: 2px;
+}
+
+.todo-title{
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0d1117;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+}
+
+
+
+/* When checkbox is checked — strikethrough title */
+input[type="checkbox"]:checked ~ .todo-title {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* ===== DESCRIPTION ===== */
+.todo-description {
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* ===== META ROW: Priority + Status ===== */
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.priority-badge,
+.status-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.priority-badge {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-badge {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* ===== DATE ROW ===== */
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.due-date {
+  font-size: 0.85rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.time-remaining {
+  font-size: 0.82rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Overdue state */
+.time-remaining.overdue {
+  color: #dc2626;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ===== TAGS ===== */
+.tags-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 0.78rem;
+  font-weight: 500;
+  background-color: #f3f4f6;
+  color: #374151;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.card-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.btn-edit,
+.btn-delete {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-edit {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.btn-edit:hover {
+  background-color: #dbeafe;
+}
+
+.btn-delete {
+  background-color: #fff1f2;
+  color: #be123c;
+}
+
+.btn-delete:hover {
+  background-color: #ffe4e6;
+}
+
+.btn-edit:focus-visible,
+.btn-delete:focus-visible {
+  outline: 3px solid #1a56db;
+  outline-offset: 2px;
+}
+
+.btn-edit:active,
+.btn-delete:active {
+  transform: scale(0.97);
+}
+
+/* ===== SCREEN READER ONLY ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .todo-card {
+    padding: 20px 16px;
+  }
+
+  .todo-title {
+    font-size: 1rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+}
