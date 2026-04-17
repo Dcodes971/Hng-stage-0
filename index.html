@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+.<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,71 +8,155 @@
 </head>
 <body>
     
-    <main class="page-wrapper">
+   
+
+<main class="page-wrapper">
 
         <article class="todo-card" data-testid="test-todo-card">
 
-            <!-- Top row:Checkbox + title -->
-             <div class="header">
-                <input 
-                type="checkbox"
-                id="todo-complete"
-                data-testid="test-todo-complete-toggle"
-                aria-label="Mark task as complete"
+            <!-- Priority Indicator (left border accent) -->
+            <div class="priority-indicator" data-testid="test-todo-priority-indicator"></div>
+
+            <!-- Top row: Checkbox + Title -->
+            <div class="card-header">
+                <input
+                    type="checkbox"
+                    id="todo-complete"
+                    data-testid="test-todo-complete-toggle"
+                    aria-label="Mark task as complete"
                 >
                 <label for="todo-complete" class="sr-only">Mark task as complete</label>
                 <h2 class="todo-title" data-testid="test-todo-title">Design the landing page</h2>
-             </div>
+            </div>
 
-             <!-- Description -->
-              <p class="todo-description" data-testid="test-todo-description">Create a clean, responsive landing page mockup for the cient's new product launch campaign.</p>
+            <!-- Meta row: Priority + Status Control -->
+            <div class="meta-row">
+                <span class="priority-badge" data-testid="test-todo-priority" aria-label="Priority: High">
+                    🔴 High
+                </span>
 
-              <!-- Priority + status Row -->
-               <div class="meta-row">
-                    <span class="Priority-badge" data-testid="test-todo-priority" aria-label="Priority">
-                        High
-                    </span>
+                <label for="status-control" class="sr-only">Task status</label>
+                <select
+                    id="status-control"
+                    class="status-control"
+                    data-testid="test-todo-status-control"
+                    aria-label="Task status"
+                >
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress" selected>In Progress</option>
+                    <option value="Done">Done</option>
+                </select>
 
-                    <span class="status-badge" data-testid="test-todo-status">
-                        In Progress
-                    </span>
-               </div>
+                <span class="status-badge" data-testid="test-todo-status">In Progress</span>
+            </div>
 
-               <!-- Due date + Time Remaining -->
-                <div class="date-row">
-                    <time class="due-date" data-testid="test-todo-due-date" datetime="2026-04-16">Due April 16, 2026</time>
-                    <span 
+            <!-- Collapsible section -->
+            <div data-testid="test-todo-collapsible-section" id="collapsible-section">
+
+                <!-- Description -->
+                <p class="todo-description" data-testid="test-todo-description">
+                    Create a clean, responsive landing page mockup for the client's new product launch campaign.
+                </p>
+
+            </div>
+
+            <!-- Expand/Collapse Toggle -->
+            <button
+                class="expand-toggle"
+                data-testid="test-todo-expand-toggle"
+                aria-expanded="false"
+                aria-controls="collapsible-section"
+            >
+                Show more
+            </button>
+
+            <!-- Due date + Time remaining -->
+            <div class="date-row">
+                <time class="due-date" data-testid="test-todo-due-date" datetime="2026-04-16">
+                    Due Apr 16, 2026
+                </time>
+                <span
                     class="time-remaining"
                     data-testid="test-todo-time-remaining"
-                    aria-live="polite">
-                    </span>
+                    aria-live="polite"
+                ></span>
+            </div>
+
+            <!-- Overdue Indicator -->
+            <div
+                class="overdue-indicator"
+                data-testid="test-todo-overdue-indicator"
+                aria-live="polite"
+                style="display:none;"
+            >
+                ⚠️ Overdue
+            </div>
+
+            <!-- Tags -->
+            <ul class="tags-list" data-testid="test-todo-tags" role="list">
+                <li class="tag" data-testid="test-todo-tag-work">Work</li>
+                <li class="tag" data-testid="test-todo-tag-urgent">Urgent</li>
+                <li class="tag" data-testid="test-todo-tag-design">Design</li>
+            </ul>
+
+            <!-- Action Buttons -->
+            <div class="card-actions">
+                <button class="btn-edit" data-testid="test-todo-edit-button" aria-label="Edit task">
+                    ✏️ Edit
+                </button>
+                <button class="btn-delete" data-testid="test-todo-delete-button" aria-label="Delete task">
+                    🗑️ Delete
+                </button>
+            </div>
+
+            <!-- Edit Form (hidden by default) -->
+            <div class="edit-form" data-testid="test-todo-edit-form" style="display:none;">
+
+                <div class="form-group">
+                    <label for="edit-title">Title</label>
+                    <input
+                        type="text"
+                        id="edit-title"
+                        data-testid="test-todo-edit-title-input"
+                        placeholder="Task title"
+                    >
                 </div>
 
-                <!-- Tags -->
-                 <ul class="tags-list" data-testid="test-todo-tags" role="list">
-                    <li class="tag" data-testid="test-todo-work">Work</li>
-                    <li class="tag" data-testid="test-todo-urgent">Urgent</li>
-                    <li class="tag" data-testid="test-todo-design">Design</li>
-                 </ul>
+                <div class="form-group">
+                    <label for="edit-description">Description</label>
+                    <textarea
+                        id="edit-description"
+                        data-testid="test-todo-edit-description-input"
+                        placeholder="Task description"
+                        rows="3"
+                    ></textarea>
+                </div>
 
-                 <!-- Action buttons -->
-                  <div class="card-actions">
-                    <button 
-                    class="btn-edit"
-                    data-testid="test-todo-edit-button"
-                    aria-label="Edit task"
-                    >
-                        Edit
-                    </button>
+                <div class="form-group">
+                    <label for="edit-priority">Priority</label>
+                    <select id="edit-priority" data-testid="test-todo-edit-priority-select">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High" selected>High</option>
+                    </select>
+                </div>
 
-                    <button
-                    class="btn-delete"
-                    data-testid="test-todo-delete-button"
-                    aria-label="Delete task"
+                <div class="form-group">
+                    <label for="edit-due-date">Due Date</label>
+                    <input
+                        type="date"
+                        id="edit-due-date"
+                        data-testid="test-todo-edit-due-date-input"
                     >
-                        Delete
-                    </button>
-                  </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn-save" data-testid="test-todo-save-button">💾 Save</button>
+                    <button class="btn-cancel" data-testid="test-todo-cancel-button">✕ Cancel</button>
+                </div>
+
+            </div>
+
         </article>
 
     </main>
